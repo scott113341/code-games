@@ -1,0 +1,41 @@
+<div class="game-grid">
+	<div ng-repeat="row in game.rows">
+		<div ng-init="$row = $index" class="card-row">
+			<div 
+				ng-repeat="card in row"
+				class="word-card bg-{{ card.team }}" 
+				ng-click="game.select($row, $index)" 
+				ng-class=" { selected: card.chosen }">
+					
+					<div class="word">{{ card.word }}</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="remaining">
+	<div class="bg-red">Remaining Reds: {{ game.remainingReds }}</div>
+	<div class="bg-blue">Remaining Blues: {{ game.remainingBlues }}</div>
+	<div class="bg-black" ng-click="newGame()">New Game</div>
+</div>
+
+<div class="remaining">
+	
+</div>
+
+<div ng-if="showMasterCode" class="spymaster-banner banner">
+	<div class="banner-content">
+		<h1>Spy Master Code</h1>
+		<h1>{{ game.keyUrl }}</h1>
+	</div>
+	<div class="close-button" ng-click="hideMasterCode()"></div>
+</div>
+
+<div ng-if="game.gameOver" class="gameend-banner banner bg-{{ game.winner }}">
+	<div class="banner-content">
+		<h1>Game Over!</h1>
+		<a class="sm-play" ng-click="newGame()">New Game</a>
+	</div>
+	
+</div>
+
